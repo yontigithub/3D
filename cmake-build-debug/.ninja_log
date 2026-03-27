@@ -1,0 +1,13 @@
+# ninja log v5
+1	352	1774607114423600177	CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o	5013929982d79eeb
+317	352	1774607239976698822	SpinningCubeRender	7b0ade780b015a97
+2	410	1774607151621086844	CMakeFiles/SpinningCubeRender.dir/main.cpp.o	3b4bd025c940fe20
+2	317	1774607239940232107	CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o	ea5be32d604a38b6
+1	354	1774607114425124886	CMakeFiles/SpinningCubeRender.dir/Line.cpp.o	14673762eb38d754
+1	364	1774607114436864221	CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o	a18bfc2fd3e05930
+3	557	1774641572162867237	CMakeFiles/SpinningCubeRender.dir/Line.cpp.o	192b627ec2f15e60
+3	570	1774641572174818160	CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o	cb74a4bae9b89a02
+3	574	1774641572180217122	CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o	7858c965b79e0f0f
+3	575	1774641572181422539	CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o	23c4bc818a5dda7
+2	589	1774641572196763298	CMakeFiles/SpinningCubeRender.dir/main.cpp.o	b7b7b009e36987eb
+589	627	1774641572236580905	SpinningCubeRender	7b0ade780b015a97
