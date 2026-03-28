@@ -11,14 +11,14 @@
 class Triangle {
 public:
 
-    Triangle(const Point3D& point1, const Point3D& point2, const Point3D& point3);
+    Triangle(const Point3D& p1, const Point3D& p2, const Point3D& p3);
     Triangle(const Triangle&) = default;
     ~Triangle() = default;
 
     void smartSweep(const std::function<void(const Point3D&)>& func);
 
 private:
-    Point3D m_vertex1, m_vertex2, m_vertex3;
+    Point3D m_p1, m_p2, m_p3;
 };
 
 

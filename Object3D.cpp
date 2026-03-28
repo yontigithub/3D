@@ -26,7 +26,7 @@ void Object3D::rotate(const Point3D::Axis &axis, const long double& phi) {
 
 int Object3D::getLen() const {
     int ans = 0;
-    for (; m_points[ans] != nullptr; ++ans);
+    while(m_points[ans]) ++ans;
     return ans;
 }
 

@@ -10,12 +10,10 @@
 long double C[8][3] = { {10,20,10},{30,20,10},{10,40,10},{30,40,10},{10,20,30},{30,20,30},{10,40,30},{30,40,30} };
 //const long double O[3] = { 20,30,20 };
 
-void filll_zis(long double zis[PAGE_HEIGHT][PAGE_WIDTH], int d) {
-    for (int i = 0; i < PAGE_HEIGHT; ++i) {
-        for (int j = 0; j < PAGE_WIDTH; ++j) {
+void fill_zis(long double zis[PAGE_HEIGHT][PAGE_WIDTH], int d) {
+    for (int i = 0; i < PAGE_HEIGHT; ++i)
+        for (int j = 0; j < PAGE_WIDTH; ++j)
             zis[i][j] = d;
-        }
-    }
 }
 
 void clear_page(char page[PAGE_HEIGHT][PAGE_WIDTH]) {
@@ -38,7 +36,7 @@ int main() {
     char page[PAGE_HEIGHT][PAGE_WIDTH];
     long double zis[PAGE_HEIGHT][PAGE_WIDTH];
     clear_page(page);
-    filll_zis(zis, -10000);
+    fill_zis(zis, -10000);
 
     Point3D p1(5, 5, 0), p2(15, 14, 0), p3(3, 12, 0), p4(5, 5, 2);
 
@@ -51,17 +49,19 @@ int main() {
 
     Object3D O(P);
 
-    O.Sweep([&page, &zis](const Point3D& point) {
+    /*O.Sweep([&page, &zis](const Point3D& point) {
         if (point.getCoords()[2] > zis[(int)ceil(point.getCoords()[0])][(int)ceil(point.getCoords()[1])]) {
             page[(int)ceil(point.getCoords()[0])][(int)ceil(point.getCoords()[1])] = 'a';
         }
-    });
+    });*/
 
     char c = 'a';
     /*T.smartSweep([c, &page](const Point3D& point){
         page[(int)ceil(point.getCoords()[0])][(int)ceil(point.getCoords()[1])] = c;
-    });
-*/
+    });*/
+
+    std::vector<Point3D> cube = {{10,20,10},{30,20,10},{10,40,10},{30,40,10},{10,20,30},{30,20,30},{10,40,30},{30,40,30}};
+
 
 
 

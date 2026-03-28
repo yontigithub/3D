@@ -15,7 +15,7 @@ public:
     void rotate(const Point3D& rotationPoint, const long double& x_phi, const long double& y_phi, const long double& z_phi);
     void rotate(const Point3D::Axis& axis, const long double& phi);
     void Sweep(const std::function<void(const Point3D&)>& func);
-    int getLen() const;
+    [[nodiscard]] int getLen() const;
 
 private:
     Point3D** m_points;

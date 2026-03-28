@@ -13,7 +13,7 @@ class Line {
 public:
     Line(const Point3D&, const Point3D&);
     Line(const Line&) = default;
-    ~Line();
+    ~Line() = default;
 
     void smartSweep(const std::function<void(const Point3D&)>& func);
 

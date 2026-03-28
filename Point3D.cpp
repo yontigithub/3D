@@ -3,7 +3,6 @@
 //
 
 #include "Point3D.h"
-#include "Utils.h"
 #include <cmath>
 
 
@@ -33,16 +32,17 @@ long double Point3D::dis(const Point3D& point) const {
                  (m_z - point.m_z)*(m_z - point.m_z));
 }
 
+// todo: check rotation functions for translation to and from rotationPoint
 void Point3D::rotateX(const Point3D& rotationPoint, long double phi) {
     Point3D centerOfRotation(rotationPoint);
     centerOfRotation.m_x = m_x;
 
     long double radius = this->dis(centerOfRotation);
-    long double theta = atanl((centerOfRotation.m_y - m_y) / (centerOfRotation.m_z - m_z));
+    long double theta = atan2l(centerOfRotation.m_y - m_y, centerOfRotation.m_z - m_z);
     long double newAngle = theta + phi;
 
     long double newY = radius * sinl(newAngle);
-    long double newZ = radius * cosl(newAngle);
+    long double newZ = radius * cosl(newAngle); // might need to add centerOfRotation
 
     m_y = newY;
     m_z = newZ;
@@ -52,7 +52,7 @@ void Point3D::rotateY(const Point3D& rotationPoint, long double phi) {
     centerOfRotation.m_y = m_y;
 
     long double radius = this->dis(centerOfRotation);
-    long double theta = atanl((centerOfRotation.m_x - m_x) / (centerOfRotation.m_z - m_z));
+    long double theta = atan2l(centerOfRotation.m_x - m_x, centerOfRotation.m_z - m_z);
     long double newAngle = theta + phi;
 
     long double newX = radius * sinl(newAngle);
@@ -66,7 +66,7 @@ void Point3D::rotateZ(const Point3D& rotationPoint, long double phi) {
     centerOfRotation.m_z = m_z;
 
     long double radius = this->dis(centerOfRotation);
-    long double theta = atanl((centerOfRotation.m_y - m_y) / (centerOfRotation.m_x - m_x));
+    long double theta = atan2l(centerOfRotation.m_y - m_y, centerOfRotation.m_x - m_x);
     long double newAngle = theta + phi;
 
     long double newY = radius * sinl(newAngle);
@@ -76,7 +76,7 @@ void Point3D::rotateZ(const Point3D& rotationPoint, long double phi) {
     m_x = newX;
 }
 
-Point3D Point3D::rotate(const Axis& axis, long double phi) const {
+void Point3D::rotate(const Axis& axis, long double phi) {
     Point3D v = *this - axis.m_org; // Translate to origin
     Point3D k = axis.m_dir;        // Assume axisDir is already normalized
 
@@ -84,9 +84,12 @@ Point3D Point3D::rotate(const Axis& axis, long double phi) const {
 
     long double k_dot_v = k * v;
 
-    Point3D v_rot = (v * cos(phi)) + (k_cross_v * sin(phi)) + (k * k_dot_v * (1 - cos(phi)));
+    Point3D v_rot = (v * cosl(phi)) + (k_cross_v * sinl(phi)) + (k * k_dot_v * (1 - cosl(phi)));
 
-    return v_rot + axis.m_org;
+    Point3D newPoint = v_rot + axis.m_org;
+    m_x = newPoint.m_x;
+    m_y = newPoint.m_y;
+    m_z = newPoint.m_z;
 }
 
 Point3D::Axis::Axis(const Point3D& org, const Point3D& dir) :
@@ -115,14 +118,14 @@ Point3D rotateZ(const Point3D& point, const Point3D& rotationPoint, long double 
     pointCopy.rotateZ(rotationPoint, phi);
     return pointCopy;
 }
+Point3D rotate(const Point3D& point, const Point3D::Axis& axis, long double phi) {
+    Point3D pointCopy(point);
+    pointCopy.rotate(axis, phi);
+    return pointCopy;
+}
 
-long double* Point3D::getCoords() const {
-    long double* coordinates = new long double[3];
-    coordinates[0] = m_x;
-    coordinates[1] = m_y;
-    coordinates[2] = m_z;
-
-    return coordinates;
+std::vector<long double> Point3D::getCoords() const {
+    return {m_x, m_y, m_z};
 }
 
 Point3D Point3D::operator+(const Point3D &p) const {
@@ -140,6 +143,28 @@ long double Point3D::operator*(const Point3D& p) const {
 Point3D Point3D::operator*(const long double& c) const {
     return {c*m_x,c*m_y,c*m_z};
 }
+Point3D& Point3D::operator+=(const Point3D& p) {
+    Point3D newPoint = *this + p;
+    m_x = newPoint.m_x;
+    m_y = newPoint.m_y;
+    m_z = newPoint.m_z;
+    return *this;
+}
+Point3D& Point3D::operator-=(const Point3D& p) {
+    Point3D newPoint = *this - p;
+    m_x = newPoint.m_x;
+    m_y = newPoint.m_y;
+    m_z = newPoint.m_z;
+    return *this;
+}
+Point3D& Point3D::operator*=(const long double& c) {
+    Point3D newPoint = *this * c;
+    m_x = newPoint.m_x;
+    m_y = newPoint.m_y;
+    m_z = newPoint.m_z;
+    return *this;
+}
+
 
 Point3D operator*(const long double& c, const Point3D& p) {
     return p*c;
@@ -152,5 +177,5 @@ std::ostream& operator<<(std::ostream& os, const Point3D& point) {
 Point3D crossProduct(const Point3D& p1, const Point3D& p2) {
     return {p1.m_y*p2.m_z-p1.m_z*p2.m_y,
             p1.m_z*p2.m_x-p1.m_x*p2.m_z,
-            p1.m_x*p2.m_y-p1.m_x*p2.m_y};
+            p1.m_x*p2.m_y-p1.m_y*p2.m_x};
 }

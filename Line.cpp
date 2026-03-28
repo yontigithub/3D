@@ -10,16 +10,11 @@ Line::Line(const Point3D& point1, const Point3D& point2) :
         m_point1(point1),
         m_point2(point2)
 {
-
-}
-
-Line::~Line() {
-    m_point1.~Point3D();
-    m_point2.~Point3D();
 }
 
 void Line::smartSweep(const std::function<void(const Point3D&)>& func) {
-    long double *p = m_point1.getCoords(), *q = m_point2.getCoords();
+    /*
+    std::vector<long double> p = m_point1.getCoords(), q = m_point2.getCoords();
 
     long double sep;
 
@@ -63,5 +58,21 @@ void Line::smartSweep(const std::function<void(const Point3D&)>& func) {
 
             z += sep;
         }
+    }
+     */
+
+    long double distance = m_point1.dis(m_point2);
+
+    if (distance <= 0.0) {
+        func(m_point1);
+        return;
+    }
+
+    long double physicalStep = 0.5;
+    long double dt = physicalStep / distance;
+
+    for (long double t = 0.0; t <= 1.0; t += dt) {
+        Point3D currentPoint = (t * m_point2) + ((1.0 - t) * m_point1);
+        func(currentPoint);
     }
 }

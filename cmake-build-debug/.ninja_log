@@ -11,3 +11,14 @@
 3	575	1774641572181422539	CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o	23c4bc818a5dda7
 2	589	1774641572196763298	CMakeFiles/SpinningCubeRender.dir/main.cpp.o	b7b7b009e36987eb
 589	627	1774641572236580905	SpinningCubeRender	7b0ade780b015a97
+15	685	1774679206490138727	CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o	7858c965b79e0f0f
+15	687	1774679206493356809	CMakeFiles/SpinningCubeRender.dir/Line.cpp.o	192b627ec2f15e60
+15	690	1774679206498703475	CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o	cb74a4bae9b89a02
+15	703	1774679206509932930	CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o	23c4bc818a5dda7
+14	703	1774679206510201180	CMakeFiles/SpinningCubeRender.dir/main.cpp.o	b7b7b009e36987eb
+703	826	1774679206634890859	SpinningCubeRender	7b0ade780b015a97
+2	492	1774680590007470341	CMakeFiles/SpinningCubeRender.dir/Line.cpp.o	192b627ec2f15e60
+492	594	1774680590110094729	SpinningCubeRender	7b0ade780b015a97
+3	552	1774703234763273080	CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o	7858c965b79e0f0f
+2	567	1774703234779132659	CMakeFiles/SpinningCubeRender.dir/main.cpp.o	b7b7b009e36987eb
+567	686	1774703234898534962	SpinningCubeRender	7b0ade780b015a97
