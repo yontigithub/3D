@@ -8,4 +8,6 @@ Line.cpp
 Triangle.cpp
 Point3D.cpp
 Camera.h
-Camera.cpp)
+Camera.cpp
+Mesh.h
+Mesh.cpp)
