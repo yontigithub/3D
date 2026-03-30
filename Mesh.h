@@ -14,6 +14,7 @@
 
 class Mesh {
 public:
+    Mesh() = default;
     Mesh(const std::vector<Point3D>& vertices, const std::vector<std::vector<int>>& indices);
     Mesh(const Mesh&) = default;
     ~Mesh() = default;
@@ -21,6 +22,8 @@ public:
     void rotate(const Point3D::Axis& axis, long double phi);
     void translate(const Point3D& p);
     void render(char page[PAGE_HEIGHT][PAGE_WIDTH + 1], const Camera& Cam, const Point3D& light_source = {-1,-1,-1}, const Point3D& trans = {0,0,0}) const;
+
+    bool loadMesh(const std::string& str);
 
     std::vector<Point3D> vtx;
     std::vector<std::vector<int>> idx;

@@ -10,7 +10,7 @@
 
 class Point3D {
 public:
-    Point3D(long double X, long double Y, long double Z);
+    Point3D(long double X = 0, long double Y = 0, long double Z = 0);
     Point3D(const Point3D& point) = default;
     ~Point3D() = default;
 

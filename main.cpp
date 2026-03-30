@@ -42,8 +42,8 @@ int main() {
 
     // definitions
 
-    Point3D light_source(0,-1,0); light_source.normalize();
-    Camera Cam({0,0,0});
+    Point3D light_source(1,1,-1); light_source.normalize();
+    Camera Cam(Point3D(0,0,0));
 
     std::vector<Point3D> dodeca({{-1.00000000,-1.00000000,-1.00000000},{-1.00000000,-1.00000000,1.00000000},{-1.00000000,1.00000000,-1.00000000},{-1.00000000,1.00000000,1.00000000},{1.00000000,-1.00000000,-1.00000000},{1.00000000,-1.00000000,1.00000000},{1.00000000,1.00000000,-1.00000000},{1.00000000,1.00000000,1.00000000},{0.00000000,-1.61803399,-0.61803399},{0.00000000,-1.61803399,0.61803399},{0.00000000,1.61803399,-0.61803399},{0.00000000,1.61803399,0.61803399},{-0.61803399,0.00000000,-1.61803399},{-0.61803399,0.00000000,1.61803399},{0.61803399,0.00000000,-1.61803399},{0.61803399,0.00000000,1.61803399},{-1.61803399,-0.61803399,0.00000000},{-1.61803399,0.61803399,0.00000000},{1.61803399,-0.61803399,0.00000000},{1.61803399,0.61803399,0.00000000}});
     std::vector<std::vector<int>> faces({{0,8,9,1,16},{0,12,14,4,8},{0,16,17,2,12},{12,2,10,6,14},
@@ -51,14 +51,20 @@ int main() {
                                          {19,7,15,5,18},{4,18,5,9,8},{1,9,5,15,13},{17,16,1,13,3}});
     std::vector<std::vector<int>> triangles = triangulate_dodecahedron(faces);
 
-    Mesh mesh(dodeca, triangles);
+    //Mesh mesh(dodeca, triangles);
+    Mesh mesh;
+    if(!mesh.loadMesh("../VideoShip.obj")) {
+        std::cout << "no file found" <<'\n';
+        exit(0);
+    }
 
 
-    long double dz = 4.0;
+
+    long double dx = 0.0;
     while(true) {
 
-        mesh.render(page, Cam, light_source, {0,0,dz});
-
+        mesh.render(page, Cam, light_source, {dx,0,6});
+        dx += 0.005;
 
         std::cout << "\x1b[0;0H";
         print_page(page);
@@ -66,9 +72,9 @@ int main() {
 
         mesh.rotate(Point3D::Axis({0,0,0},{0,1,0}), 0.01);
         mesh.rotate(Point3D::Axis({0,0,0},{1,0,0}), 0.003);
-        mesh.rotate(Point3D::Axis({0,0,0},{0,0,1}), 0.025);
+       // mesh.rotate(Point3D::Axis({0,0,0},{0,0,1}), 0.015);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        //std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
     return 0;
 }

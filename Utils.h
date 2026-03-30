@@ -6,16 +6,19 @@
 #define SPINNINGCUBE_UTILS_H
 
 const long double add = 0.005;
-const unsigned short PAGE_WIDTH = 160, PAGE_HEIGHT = 160;
+const unsigned short PAGE_WIDTH = 260, PAGE_HEIGHT = 260;
 
 typedef std::pair<long double, long double> Point2D;
 
-static int to_pos(long double x, int Max) {
-    return std::max(std::min((int)ceil(x),Max-1),0);
+static std::pair<int, int> screen(const Point2D& p) {
+    return {(int)ceil((1 - (p.second + 1)/2)*PAGE_HEIGHT), (int)ceil((p.first + 1)/2*PAGE_WIDTH)};
 }
-static std::pair<int, int> screen(Point2D p) {
-    return {to_pos((1 - (p.second + 1)/2)*PAGE_HEIGHT, PAGE_HEIGHT), to_pos((p.first + 1)/2*PAGE_WIDTH, PAGE_WIDTH)};
+
+static void pixel(char page[PAGE_HEIGHT][PAGE_WIDTH + 1], const std::pair<int, int>& p, const char& c) {
+    if (p.first < 0 || p.first >= PAGE_HEIGHT || p.second < 0 || p.second >= PAGE_WIDTH) return;
+    page[p.first][p.second] = c;
 }
+
 
 const std::string light = ".,-~:;=!*#$@";
 
