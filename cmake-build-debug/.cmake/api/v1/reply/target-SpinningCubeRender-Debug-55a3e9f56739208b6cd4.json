@@ -53,8 +53,7 @@
 				1,
 				2,
 				3,
-				4,
-				6
+				5
 			]
 		}
 	],
@@ -91,15 +90,14 @@
 				1,
 				2,
 				3,
-				4,
-				6
+				5
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				5
+				4
 			]
 		}
 	],
@@ -115,12 +113,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Line.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "Object3D.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

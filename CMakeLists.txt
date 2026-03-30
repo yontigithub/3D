@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(SpinningCubeRender main.cpp
 Line.cpp
-Object3D.cpp
 Triangle.cpp
 Point3D.cpp
 Camera.h

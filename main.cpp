@@ -2,7 +2,6 @@
 #include "Point3D.h"
 #include "Utils.h"
 #include "Triangle.h"
-#include "Object3D.h"
 #include "Camera.h"
 #include "Line.h"
 #include <cmath>
@@ -49,7 +48,8 @@ int main() {
 
     // definitions
     std::string light = ".,-~:;=!*#$@";
-    Point3D light_source(-(long double)1.0/sqrtl(3.0), -(long double)1.0/sqrtl(3.0), -(long double)1.0/sqrtl(3.0));
+
+    Point3D light_source(-1,-1,-1); light_source.normalize();
     Camera Cam({0,0,0});
 
     std::vector<Point3D> dodeca({{-1.00000000,-1.00000000,-1.00000000},{-1.00000000,-1.00000000,1.00000000},{-1.00000000,1.00000000,-1.00000000},{-1.00000000,1.00000000,1.00000000},{1.00000000,-1.00000000,-1.00000000},{1.00000000,-1.00000000,1.00000000},{1.00000000,1.00000000,-1.00000000},{1.00000000,1.00000000,1.00000000},{0.00000000,-1.61803399,-0.61803399},{0.00000000,-1.61803399,0.61803399},{0.00000000,1.61803399,-0.61803399},{0.00000000,1.61803399,0.61803399},{-0.61803399,0.00000000,-1.61803399},{-0.61803399,0.00000000,1.61803399},{0.61803399,0.00000000,-1.61803399},{0.61803399,0.00000000,1.61803399},{-1.61803399,-0.61803399,0.00000000},{-1.61803399,0.61803399,0.00000000},{1.61803399,-0.61803399,0.00000000},{1.61803399,0.61803399,0.00000000}});
@@ -79,17 +79,26 @@ int main() {
             //dz += 0.0001;
         }*/
 
-        for (auto& t : triangles) {
+        for (int i = 0; i < (int)triangles.size(); ++i) {
             Point3D a(0,0,dz);
-            Triangle tri(dodeca[t[0]]+a, dodeca[t[1]]+a, dodeca[t[2]]+a);
+            Triangle tri(dodeca[triangles[i][0]]+a, dodeca[triangles[i][1]]+a, dodeca[triangles[i][2]]+a);
             Point3D n = tri.normal();
             if (n*(tri.p1 - Cam.cam) < 0.0) {
-                char c = light[std::min((int)ceil(((n * light_source) + 1.0)/2.0 * 11.0), 11)];
+                //char c = light[std::min((int)ceil(((n * light_source) + 1.0)/2.0 * 11.0), 11)];
+                char c = light[i/3];
                 tri.smartSweep([&Cam, c, &page](const Point3D& point){
                     auto a = screen(Cam.project(point));
 
                     page[(int)ceil(a.second)][(int)ceil(a.first)] = c;
                 });
+
+                /*Line lines[3] = {{tri.p1, tri.p2}, {tri.p2, tri.p3}, {tri.p3, tri.p1}};
+                for (auto & line : lines) {
+                    line.smartSweep([&Cam, &dz, &page](const Point3D &point) {
+                        auto a = screen(Cam.project(point));
+                        page[a.first][a.second] = '#';
+                    });
+                }*/
             }
         }
 

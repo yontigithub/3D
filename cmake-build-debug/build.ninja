@@ -61,12 +61,6 @@ build CMakeFiles/SpinningCubeRender.dir/Line.cpp.o: CXX_COMPILER__SpinningCubeRe
   OBJECT_DIR = CMakeFiles/SpinningCubeRender.dir
   OBJECT_FILE_DIR = CMakeFiles/SpinningCubeRender.dir
 
-build CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o: CXX_COMPILER__SpinningCubeRender_unscanned_Debug /Users/yorap/Documents/CS/Code/C++/Projects/3D/Object3D.cpp || cmake_object_order_depends_target_SpinningCubeRender
-  DEP_FILE = CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk -fcolor-diagnostics
-  OBJECT_DIR = CMakeFiles/SpinningCubeRender.dir
-  OBJECT_FILE_DIR = CMakeFiles/SpinningCubeRender.dir
-
 build CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o: CXX_COMPILER__SpinningCubeRender_unscanned_Debug /Users/yorap/Documents/CS/Code/C++/Projects/3D/Triangle.cpp || cmake_object_order_depends_target_SpinningCubeRender
   DEP_FILE = CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk -fcolor-diagnostics
@@ -93,7 +87,7 @@ build CMakeFiles/SpinningCubeRender.dir/Camera.cpp.o: CXX_COMPILER__SpinningCube
 #############################################
 # Link the executable SpinningCubeRender
 
-build SpinningCubeRender: CXX_EXECUTABLE_LINKER__SpinningCubeRender_Debug CMakeFiles/SpinningCubeRender.dir/main.cpp.o CMakeFiles/SpinningCubeRender.dir/Line.cpp.o CMakeFiles/SpinningCubeRender.dir/Object3D.cpp.o CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o CMakeFiles/SpinningCubeRender.dir/Camera.cpp.o
+build SpinningCubeRender: CXX_EXECUTABLE_LINKER__SpinningCubeRender_Debug CMakeFiles/SpinningCubeRender.dir/main.cpp.o CMakeFiles/SpinningCubeRender.dir/Line.cpp.o CMakeFiles/SpinningCubeRender.dir/Triangle.cpp.o CMakeFiles/SpinningCubeRender.dir/Point3D.cpp.o CMakeFiles/SpinningCubeRender.dir/Camera.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk
   OBJECT_DIR = CMakeFiles/SpinningCubeRender.dir
   POST_BUILD = :
