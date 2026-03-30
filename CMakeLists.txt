@@ -7,4 +7,6 @@ add_executable(SpinningCubeRender main.cpp
 Line.cpp
 Object3D.cpp
 Triangle.cpp
-Point3D.cpp)
+Point3D.cpp
+Camera.h
+Camera.cpp)

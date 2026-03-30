@@ -17,8 +17,9 @@ public:
 
     void smartSweep(const std::function<void(const Point3D&)>& func);
 
-private:
-    Point3D m_p1, m_p2, m_p3;
+    [[nodiscard]] Point3D normal() const;
+
+    Point3D p1, p2, p3;
 };
 
 

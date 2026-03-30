@@ -6,7 +6,8 @@
 #define SPINNINGCUBE_UTILS_H
 
 const long double add = 0.005;
-const unsigned short PAGE_WIDTH = 80, PAGE_HEIGHT = 50;
+const unsigned short PAGE_WIDTH = 160, PAGE_HEIGHT = 160;
 
+typedef std::pair<long double, long double> Point2D;
 
 #endif //SPINNINGCUBE_UTILS_H

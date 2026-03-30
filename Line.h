@@ -17,8 +17,7 @@ public:
 
     void smartSweep(const std::function<void(const Point3D&)>& func);
 
-private:
-    Point3D m_point1, m_point2;
+    Point3D p1, p2;
 };
 
 #endif //SPINNINGCUBE_LINE_H
